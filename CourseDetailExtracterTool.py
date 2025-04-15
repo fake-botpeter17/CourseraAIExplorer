@@ -61,3 +61,5 @@ class CourseDetailExtracterTool:
             pass
         with open(f"Course Details//{course_name}.json", "w") as f:         #Writing the output to a file for later access.
             f.write(content)
+            
+        print(f"File written to 'Course Details/{course_name}.json'")
