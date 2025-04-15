@@ -42,3 +42,7 @@ def getCourseDetails(course_name :str):
 
     with open(f"{course_name}.json", "w") as f:         #Writing the output to a file for later access.
         f.write(full_res)
+
+if __name__ == "__main__":
+    course = input("Enter the course name to fetch the details for:\t") #Mathematics for Machine Learning
+    getCourseDetails(course)
