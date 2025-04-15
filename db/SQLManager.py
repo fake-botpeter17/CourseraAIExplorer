@@ -75,6 +75,23 @@ class SQLite:
     def viewTable(self, project :list[str] | None = None, constraints :list[str] | None = None):
         if not self.__current_table:
             raise TableInitializationError("No table selected! Use selectTable() to select.")
-        self.__cursor.execute(f"select * from {self.__current_table}")
+        q = "select "
+        if project:
+            q += ", ".join(project) + " "
+        else:
+            q += "* "
+        q += f"from {self.__current_table}"
+        if constraints:
+            q += " where " + " and ".join(constraints)
+        self.__cursor.execute(q)
         return self.__cursor.fetchall()
     
+if __name__ == "__main__":
+    # Example usage
+    db = SQLite("example.db")
+    db.createTable("sample", ("id", "name"), [("integer", "primary key"), ("text",)])
+    db.selectTable("sample")
+    db.insertValue(1, "John Doe")
+    db.commit()
+    print(db.viewTable(["id"], ["name = 'John Doe'"]))
+    db.close()
