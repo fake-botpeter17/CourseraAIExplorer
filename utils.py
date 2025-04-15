@@ -1,4 +1,4 @@
-from enum import StrEnum, IntEnum
+from enum import StrEnum
 
 class CourseType(StrEnum):
     """
@@ -8,7 +8,7 @@ class CourseType(StrEnum):
     spl = "Specialization"
     sa = "Standalone"
 
-class CertificateValue(IntEnum):
+class CertificateValue(StrEnum):
     """
     Enum for certificate values.
     """
