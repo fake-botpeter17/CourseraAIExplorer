@@ -7,7 +7,7 @@ from os import getenv   #This is used for API KEY retreival
 client = genai.Client(api_key=getenv("GeminiAPI"))
 
 """
-As our goal is just to make a specialized tool that gets the Course info from is a specified 
+As our goal is just to make a specialized tool that gets the Course info from in a specified 
 JSON schema, we can make the promt to the model as a constant with a placeholder for the course name.
 """
 
@@ -40,7 +40,7 @@ def getCourseDetails(course_name :str):
     
     print()
 
-    with open(f"{course_name}.json", "w") as f:         #Writing the output to a file for later access.
+    with open(f"Course Details//{course_name}.json", "w") as f:         #Writing the output to a file for later access.
         f.write(full_res)
 
 if __name__ == "__main__":
