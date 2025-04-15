@@ -86,12 +86,13 @@ class SQLite:
         self.__cursor.execute(q)
         return self.__cursor.fetchall()
     
-if __name__ == "__main__":
-    # Example usage
-    db = SQLite("example.db")
-    db.createTable("sample", ("id", "name"), [("integer", "primary key"), ("text",)])
-    db.selectTable("sample")
-    db.insertValue(1, "John Doe")
-    db.commit()
-    print(db.viewTable(["id"], ["name = 'John Doe'"]))
-    db.close()
+def initCourseDB() -> SQLite:
+    """
+    Initializes the Course database with the specified file name.
+    """
+    db = SQLite("courses.db")
+    db.createTable(
+        tName="Courses", 
+        tCols=("id", "name", "type", "sub_courses", "desc", "certVal"),
+        tConstraints=[("integer", "primary key"), ("text",), ("text",), ("text",), ("text",), ("text",)]
+        )
