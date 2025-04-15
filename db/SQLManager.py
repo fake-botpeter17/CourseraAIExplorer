@@ -96,9 +96,3 @@ def initCourseDB() -> SQLite:
         tCols=("id", "name", "provider", "type", "sub_courses", "desc", "certVal"),
         tConstraints=[("integer", "primary key"), ("text",), ("text",), ("text",), ("text",), ("text",), ("text",)]
         )
-if __name__ == '__main__':
-    # db = SQLite("e:\\CourseraAIExplorer\\db\\courses.db")
-    # db.selectTable("Courses")
-    # from tabulate import tabulate
-    # print(tabulate(db.viewTable()))
-    initCourseDB()
