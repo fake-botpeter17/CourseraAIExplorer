@@ -1,3 +1,4 @@
+from tabulate import tabulate
 from CourseDetailExtracterTool import CourseDetailExtracterTool
 from db.SQLManager import SQLite
 from json import loads, dumps
@@ -13,8 +14,9 @@ max_id = highest_entry[0] if highest_entry[0] else 0
 def show_menu():
     print("\n\n")
     print("1. Get Course Details")
-    print("2. Clear Screen")
-    print("3. Exit\n\n")
+    print("2. View Saved Courses")
+    print("3. Clear Screen")
+    print("4. Exit\n\n")
     
 def save_to_db(cName: str):
     global max_id
@@ -55,8 +57,17 @@ while ch:
                         print("\n\nInvalid Choice! Try again.")
                         
         case "2":
-            print("\033[H\033[J", end="")  # ANSI escape code to clear the screen
+            td = db.viewTable()
+            print(tabulate(td, 
+                tablefmt='grid', 
+                headers=["S.No.", "Course Name", "Course Provider", "Course Type", "Sub-Courses", "Description", "Certificate Value"], 
+                maxcolwidths=[None, 30, 30, None, 45, 45, None],
+                stralign='center', numalign='center'
+                ))
+        
         case "3":
+            print("\033[H\033[J", end="")  # ANSI escape code to clear the screen
+        case "4":
             ch = False
         case _:
             print("\n\nInvalid choice. Please try again.")
