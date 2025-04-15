@@ -3,6 +3,7 @@
 from google import genai
 from os import getenv, makedirs   #This is used for API KEY retreival
 from time import sleep
+from re import sub
 import sys
 
 
@@ -37,13 +38,13 @@ class CourseDetailExtracterTool:
             model=self.__model, 
             contents= self.__prompt + course_name      
         )
-        
+        cleaned_json = sub(r"```(?:json)?\s*([\s\S]*?)\s*```", r"\1", response.text)  #Cleaning the response to get the JSON data.
         if print_res:
-            self.printContent(response.text)
+            self.printContent(cleaned_json)
         if write_file:
-            self.writeFile(course_name, response.text)
+            self.writeFile(course_name, cleaned_json)
         
-    def printContent(self, response, stream_delay = 0.5) -> None:
+    def printContent(self, response, stream_delay = 0.01) -> None:
         for char in response:
             sys.stdout.write(char)
             sys.stdout.flush()

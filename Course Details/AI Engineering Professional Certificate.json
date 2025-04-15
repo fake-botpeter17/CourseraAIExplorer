@@ -1,0 +1,14 @@
+{
+    "name": "AI Engineering Professional Certificate",
+    "provider": "IBM",
+    "courseType": "pc",
+    "subCourses": [
+        "AI Engineering Foundations",
+        "Python for Data Science, AI & Development",
+        "AI Engineering with IBM Watson Studio and IBM Cloud Pak for Data",
+        "Building AI Applications with Watson APIs",
+        "AI Engineering Capstone Project"
+    ],
+    "desc": "The AI Engineering Professional Certificate is designed to equip learners with the skills needed to build, deploy, and manage AI-powered applications. It covers foundational concepts, practical application using IBM tools, and a capstone project to demonstrate mastery.",
+    "certVal": 5
+}
