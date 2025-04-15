@@ -1,7 +1,9 @@
 #First we must import the Google genai module to make API requests to the required model.
 #and other required modules
 from google import genai
-from os import getenv   #This is used for API KEY retreival
+from os import getenv, makedirs   #This is used for API KEY retreival
+from time import sleep
+import sys
 
 
 class CourseDetailExtracterTool:
@@ -29,25 +31,32 @@ class CourseDetailExtracterTool:
     #The promt has to give the model some context and should be minimal (to reduce number of tokens used).
     #Our prompt will use somewhere around 110 - 130 tokens.
 
-    def getCourseDetails(self, course_name :str):
-        full_res = ""           #This will let us save the whole output
+    def getCourseDetails(self, course_name :str, print_res:bool = False, write_file: bool = True) -> None:
         #Passing on the contents to our model.
-        response_stream = self.__client.models.generate_content_stream(       
+        response = self.__client.models.generate_content(       
             model=self.__model, 
             contents= self.__prompt + course_name      
         )
-        #The response_stream is a generator that yields the response from the model in chunks.
-        #We can use this to print the response as it is generated.
-        for chunk in response_stream:       #This will print our response to the terminal
-            if chunk.text:
-                print(chunk.text, end="", flush=True)
-                full_res += chunk.text
         
-        print()
+        if print_res:
+            self.printContent(response.text)
+        if write_file:
+            self.writeFile(course_name, response.text)
+        
+    def printContent(self, response, stream_delay = 0.5) -> None:
+        for char in response:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            sleep(stream_delay)
+        print()  # For newline after the stream
 
+    def writeFile(self, course_name: str, content: str) -> None:
+        """
+        This function will write the content to a file.
+        """
+        try:
+            makedirs("Course Details")   #Creating the directory if it does not exist.
+        except FileExistsError:
+            pass
         with open(f"Course Details//{course_name}.json", "w") as f:         #Writing the output to a file for later access.
-            f.write(full_res)
-
-if __name__ == "__main__":
-    course = input("Enter the course name to fetch the details for:\t") #Mathematics for Machine Learning
-    getCourseDetails(course)
+            f.write(content)
