@@ -1,0 +1,12 @@
+{
+  "name": "Machine Learning Specialization",
+  "provider": "DeepLearning.AI and Stanford University",
+  "courseType": "spl",
+  "subCourses": [
+    "Machine Learning Specialization - Supervised Machine Learning: Regression and Classification",
+    "Machine Learning Specialization - Advanced Learning Algorithms",
+    "Machine Learning Specialization - Unsupervised Learning, Recommenders, Reinforcement Learning"
+  ],
+  "desc": "This Specialization covers the fundamental concepts and techniques in machine learning. It provides a broad introduction to the field, including supervised learning (regression, classification), unsupervised learning, and deep learning. It will equip you with the skills to apply machine learning algorithms to real-world problems.",
+  "certVal": 5
+}

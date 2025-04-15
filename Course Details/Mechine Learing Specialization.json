@@ -1,0 +1,14 @@
+{
+  "name": "Machine Learning Specialization",
+  "provider": "Coursera",
+  "courseType": "spl",
+  "subCourses": [
+    "Machine Learning Foundations",
+    "Machine Learning: Regression",
+    "Machine Learning: Classification",
+    "Machine Learning: Clustering & Retrieval",
+    "Machine Learning: Recommender Systems & Dimensionality Reduction"
+  ],
+  "desc": "This specialization provides a broad introduction to machine learning, covering the fundamental concepts and techniques. It includes hands-on projects and practical applications, making it suitable for learners with basic ML knowledge and a strong foundation in Python.",
+  "certVal": 5
+}
