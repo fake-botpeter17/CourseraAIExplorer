@@ -22,10 +22,10 @@ class CourseDetailExtracterTool:
         self.__prompt = '''For a given coursera course name, give me just the data of it in the following form, {
         "name": "Course Name",
         "provider": "Provider Name",
-        "courseType": "spl" or "pc" or "sa",
+        "courseType": "spl" or "pc" or "sa" (for specialization, professional certificate and standalone respectively),
         "subCourses": [ "Course 1", "Course 2", ... ] or [],
         "desc": "Description about the course",
-        "certVal": 1 / 3 / 5 / 7 => 1 for low, 3 for special knowledge, 5 - moderate, 7 - high
+        "certVal": "o" / "t" / "f" / "s" => "o" for low, "t" for special knowledge, "f" - moderate, "s" - high
     }
     My Aim is to become ML Engineer. I'm strong in Python. I know basic ML.
     Now, the course name is '''
@@ -62,4 +62,4 @@ class CourseDetailExtracterTool:
         with open(f"Course Details//{course_name}.json", "w") as f:         #Writing the output to a file for later access.
             f.write(content)
             
-        print(f"File written to 'Course Details/{course_name}.json'")
+        print(f"✅ File written to 'Course Details/{course_name}.json'")
